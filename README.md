@@ -9,3 +9,5 @@ files in the `input` folder are those recordings.
 After having recorded the first year's data, I wanted to know more than just the
 total number, so I also wrote up some R code (`Halloween.R`) to produce a few
 different visualizations of the data. Those files are in the `output` folder.
+
+![Current Results](output/Cumulative_Count.png)
