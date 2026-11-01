@@ -129,16 +129,15 @@ final_points <- all.halloween.data %>%
       Current_Year = "n/a"
     )
   ) %>%
-  # Shift the last time of day over a bit (7 mins seems to work well) for
+  # Shift the last time of day over a bit (3 mins seems to work well) for
   # positioning labels in geom_text_repel well (below)
-  mutate(Time.of.Day = Time.of.Day + 7 * 60)
+  mutate(Time.of.Day = Time.of.Day + 3 * 60)
 
 p <-
   ggplot(
     all.halloween.data,
     aes(x = Time.of.Day, y = Cum.N, colour = Current_Year, label = Year)
   ) +
-  # geom_point(alpha = 0.5, show.legend = FALSE) +
   geom_line(
     data = . %>% filter(Current_Year == "no"),
     aes(group = Year),
@@ -148,7 +147,6 @@ p <-
   geom_line(
     data = . %>% filter(Current_Year == "yes"),
     aes(group = Year),
-    # linewidth = 0.5,
     show.legend = FALSE
   ) +
   stat_summary(fun = mean, geom = "line", color = "black", linewidth = 0.75) +
