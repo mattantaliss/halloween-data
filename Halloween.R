@@ -119,8 +119,8 @@ final_points <- all.halloween.data %>%
           format = "%Y-%m-%d %H:%M"
         ),
       N = 0,
-      Cum.N = mean(.$Cum.N),
-      Year = " Avg", # leading space sorts it correctly for using 'max'
+      Cum.N = round(mean(.$Cum.N), 0),
+      Year = paste0("Avg (", Cum.N, ")"),
       Time.of.Day =
         as.POSIXct(
           paste0("2000-10-31", strftime(Time, format = "%H:%M")),
@@ -155,6 +155,8 @@ p <-
   geom_text_repel(
     data = final_points,
     aes(label = Year, colour = Current_Year),
+    max.overlaps = Inf,      # Always show all labels
+    hjust = 0,
     nudge_x = 0, # Adjust horizontal position of labels
     direction = "y", # Allow labels to move vertically
     box.padding = unit(0.5, "lines"), # Padding around labels
